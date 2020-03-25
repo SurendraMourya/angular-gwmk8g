@@ -1,0 +1,31 @@
+<div style="text-align:center">
+  <h1>
+    Angular autocomplete
+  </h1>
+  
+</div>
+<h3>ngModel</h3>{{testvar|json}}
+<div></div>
+<h3>countries</h3>{{countries|json}}
+<div class="ng-autocomplete">
+  <ng-autocomplete
+  [(ngModel)]="testvar"
+    [data]="countries"
+    [searchKeyword]="keyword"
+    placeHolder="Enter the Country Name"
+    (selected)='selectEvent($event)'
+    (inputChanged)='onChangeSearch($event)'
+    (inputFocused)='onFocused($event)'
+    historyIdentifier="countries"
+    [itemTemplate]="itemTemplate"
+    [notFoundTemplate]="notFoundTemplate">
+  </ng-autocomplete>
+
+  <ng-template #itemTemplate let-item>
+    <a [innerHTML]="item.name"></a>
+  </ng-template>
+
+  <ng-template #notFoundTemplate let-notFound>
+    <div [innerHTML]="notFound"></div>
+  </ng-template>
+</div>
